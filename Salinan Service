@@ -1,0 +1,224 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+#define MAX_CUSTOMERS 10
+
+struct Customer
+{
+    char name[100];
+    char phone[100];
+    char address[100];
+    char model[100];
+    char date[100];
+};
+
+void displayCustomerTable(struct Customer customers[], int count)
+{
+    printf("=============================================\n");
+    printf("            DAFTAR NAMA CUSTOMER             \n");
+    printf("=============================================\n");
+    printf("No.  Nama Pemilik \n");
+
+    for (int i = 0; i < count; i++){
+        printf("%-3d %-19s\n",i+1, customers[i].name);
+
+    //DAFTAR CUSTOMER YANG SEBELUMNYA SUDAH MELAKUKAN RESERVASI
+
+    }
+
+    printf("=============================================\n");
+}
+
+void printReceipt(struct Customer customer)
+{
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    printf("|              Struk Reservasi              |\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
+
+    printf("%-25s: %s\n", "Nama Pemilik Kendaraan", customer.name);
+    printf("%-25s: %s\n", "Nomor Telepon", customer.phone);
+    printf("%-25s: %s\n", "Alamat", customer.address);
+    printf("%-25s: %s\n", "Jenis Mobil", customer.model);
+    printf("%-25s: %s\n", "Tanggal Pendaftaran", customer.date);
+
+    printf("\n\n");
+}
+
+int main()
+{
+    struct Customer previousCustomers[MAX_CUSTOMERS];
+    int choice;
+    int previousCount = 0;
+    bool customerChanged = false;
+
+    // Data pelanggan sebelumnya
+    struct Customer customer1 =
+    {
+        .name = "Ramji Qastalany",
+        .phone = "087669xxx",
+        .address = "Gg. kelapa 2 no18 RT6/RW8, Jagakarsa",
+        .model = "Toyota Camry plat B.6167 fid",
+        .date = "01-06-2023"
+    };
+
+    struct Customer customer2 =
+    {
+        .name = "Feiza Adara",
+        .phone = "021847xxx",
+        .address = "jl.teratai no18 RT5/RW2, Halim PK",
+        .model = "Honda Civic plat B.4458 kbd",
+        .date = "02-06-2023"
+    };
+
+    struct Customer customer3 =
+    {
+        .name = "Julia Fortuna",
+        .phone = "08987676xx",
+        .address = "jl.kamelia no9 RT6/RW4, Depok Sawangan",
+        .model = "Honda CRV plat F.2375 kww",
+        .date = "03-06-2023"
+    };
+
+    struct Customer customer4 =
+    {
+        .name = "Ruby Dp",
+        .phone = "087865xxx",
+        .address = "jl.Tepus no37 RT2/RW1, Kampung Benda",
+        .model = "Toyota Xenia plat B.2341 hbd",
+        .date = "04-06-2023"
+    };
+
+    // MENYIMPAN DATA YANG SEBELUMNYA KE DALAM ARRAY
+    previousCustomers[previousCount++] = customer1;
+    previousCustomers[previousCount++] = customer2;
+    previousCustomers[previousCount++] = customer3;
+    previousCustomers[previousCount++] = customer4;
+
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+    printf("|  * * * BENGKEL OJAK MULYA MANDIRI * * *  |\n");
+    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+
+    while (1)
+    {
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+        printf("|  *  *  * Reservasi Servis Mobil *  *  *  |\n");
+        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
+
+        printf("Menu:\n");
+        printf("1. Servis Mobil Secara Langsung\n");
+        printf("2. Booking Layanan Servis Mobil\n");
+        printf("3. Lihat Daftar Customer\n");
+        printf("4. Cetak Struk\n");
+        printf("5. Kembali ke Menu Utama\n");
+        printf("Pilih Layanan (1/2/3/4/5): ");
+        scanf("%d", &choice);
+
+        printf("\n\n");
+
+        switch (choice)
+        {
+            case 1:
+                printf("Servis Mobil Secara Langsung\n");
+                printf("Silahkan mengisi kertas formulir dari meja administrasi dan mengisi keluhan \n");
+                printf("lalu berikan kertas anda kembali untuk diproses menjadi nomor antrian.\n\n");
+                break;
+
+            case 2:
+                printf("Booking Layanan Servis Mobil\n\n");
+
+                if (previousCount >= MAX_CUSTOMERS)
+                {
+                    printf("Maaf, kapasitas pendaftaran sudah penuh.\n");
+                    break;
+                }
+
+                printf("Masukkan Nama Pemilik        : ");
+                getchar();
+                fgets(previousCustomers[previousCount].name, sizeof(previousCustomers[previousCount].name), stdin);
+
+                printf("Masukkan Nomor Telepon       : ");
+                fgets(previousCustomers[previousCount].phone, sizeof(previousCustomers[previousCount].phone), stdin);
+
+                printf("Masukkan Alamat              : ");
+                fgets(previousCustomers[previousCount].address, sizeof(previousCustomers[previousCount].address), stdin);
+
+                printf("Masukkan Model Kendaraan     : ");
+                fgets(previousCustomers[previousCount].model, sizeof(previousCustomers[previousCount].model), stdin);
+
+                printf("Masukkan Tanggal Pendaftaran : ");
+                fgets(previousCustomers[previousCount].date, sizeof(previousCustomers[previousCount].date), stdin);
+
+                customerChanged = true;
+                previousCount++;
+
+                printf("Reservasi berhasil dilakukan.\n\n");
+                break;
+
+            case 3:
+                printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+                printf("|  * * * BENGKEL OJAK MULYA MANDIRI * * *  |\n");
+                printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+                printf("|      Daftar Customer yang Terdaftar      |\n");
+                printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+
+                if (customerChanged)
+                {
+                    // Mengurutkan customer berdasarkan nomor Antrian
+                    for (int i = 0; i < previousCount - 1; i++)
+                    {
+                        for (int j = 0; j < previousCount - i - 1; j++)
+                        {
+                            if (strcmp(previousCustomers[j].date, previousCustomers[j + 1].date) > 0)
+                            {
+                                struct Customer temp = previousCustomers[j];
+                                previousCustomers[j] = previousCustomers[j + 1];
+                                previousCustomers[j + 1] = temp;
+                            }
+                        }
+                    }
+                }
+
+                displayCustomerTable(previousCustomers, previousCount);
+                break;
+
+            case 4:
+                printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+                printf("|  * * * BENGKEL OJAK MULYA MANDIRI * * *  |\n");
+                printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+                printf("|           Cetak Struk Reservasi          |\n");
+                printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+
+                int customerNumber;
+                printf("Masukkan nomor antrian customer: ");
+                scanf("%d", &customerNumber);
+                printf("\n\n\n");
+                if (customerNumber >= 1 && customerNumber <= previousCount)
+                {
+                    printReceipt(previousCustomers[customerNumber - 1]);
+                }
+                else
+                {
+                    printf("Nomor customer tidak valid.\n");
+                }
+
+                break;
+
+            case 5:
+                printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+                printf("|  * * * BENGKEL OJAK MULYA MANDIRI * * *  |\n");
+                printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+                printf("|          Kembali ke Menu Utama           |\n");
+                printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
+                continue;
+
+            default:
+                printf("Pilihan tidak valid. Silakan pilih layanan yang tersedia.\n");
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
