@@ -1,1 +1,47 @@
 Program : Reservasi Pembelian Dan Service Mobil
+define Max_Costumer <-- 10
+define Max_User <-- 10
+define Max_Length <-- 50
+
+Struct Costumer : 
+    name : array [1..100] Of Char
+    phone : array [1.. 100] Of Char
+    address : array [1.. 100] Of Char
+    model : array [1.. 100] Of Char
+    date : array [1.. 100] Of Char
+
+Procedure displayCustomerTable (struct Customer customers [] : Char, Count : Integer) : 
+    output (" ======================================= ") 
+    output ("          DAFTAR NAMA COSTUMER           ") 
+    output (" ======================================= ")
+    output (" No. Nama Pemilik ") 
+
+    for (integer i = 0 ; i < count ; i++ ) :
+        output (" %-3d %-19s ", i+1, customers[i].name) <-- Integer, Char
+
+    output (" ======================================= ")
+
+Procedure printReceipt (struct Customer customer) :
+    output ("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= ") 
+    output ("            Struk Reservasi              ")     
+    output ("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= ")
+
+    output (" %-25s: %s ", "Nama Pemilik Kendaraan", customer.name) 
+    output (" %-25s: %s ", "Nomor Telepon", customer.phone)
+    output (" %-25s: %s ", "Alamat", customer.address)
+    output (" %-25s: %s ", "Jenis Mobil", customer.model)
+    output (" %-25s: %s ", "Tanggal Pendaftaran", customer.date)
+
+    output (" ") 
+
+
+Struct User : 
+    username : array [1..10] of Char
+    password : array [1.. 10] of Char
+
+Boolean apakah_username_ada (struct User users[], num_user : integer, username[] : char) :
+   for ( integer i = 0; i < num_users; i++ ) :
+       if (strcmp (users[i].username, username == 0) then
+          Return --> False
+
+Procedure registerpengguna 
