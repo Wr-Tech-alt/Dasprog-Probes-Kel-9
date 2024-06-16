@@ -718,7 +718,7 @@ struct Customer previousCustomers[MAX_CUSTOMERS];
     previousCustomers[previousCount++] = customer4;
 
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-    printf("|  * * * BENGKEL OJAK MULYA MANDIRI * * *  |\n");
+    printf("|  * * * BENGKEL WOJAK  * * *  |\n");
     printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
 
     while (1)
@@ -779,7 +779,7 @@ struct Customer previousCustomers[MAX_CUSTOMERS];
 
             case 3:
                 printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-                printf("|  * * * BENGKEL OJAK MULYA MANDIRI * * *  |\n");
+                printf("|  * * * SERVICE BENGKEL WOJAK * * *  |\n");
                 printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
                 printf("|      Daftar Customer yang Terdaftar      |\n");
                 printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
@@ -806,7 +806,7 @@ struct Customer previousCustomers[MAX_CUSTOMERS];
 
             case 4:
                 printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-                printf("|  * * * BENGKEL OJAK MULYA MANDIRI * * *  |\n");
+                printf("|  * * * SERVICE BENGKEL WOJAK * * *  |\n");
                 printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
                 printf("|           Cetak Struk Reservasi          |\n");
                 printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
@@ -828,7 +828,7 @@ struct Customer previousCustomers[MAX_CUSTOMERS];
 
             case 5:
                 printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-                printf("|  * * * BENGKEL OJAK MULYA MANDIRI * * *  |\n");
+                printf("|  * * * SERVICE BENGKEL WOJAK * * *  |\n");
                 printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
                 printf("|          Kembali ke Menu Utama           |\n");
                 printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
