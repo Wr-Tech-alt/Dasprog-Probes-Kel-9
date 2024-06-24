@@ -1,4 +1,5 @@
 Program : Reservasi Pembelian Dan Service Mobil
+-----------------------------------------------
 define Max_Costumer <-- 10
 define Max_User <-- 10
 define Max_Length <-- 50
@@ -39,9 +40,44 @@ Struct User :
     username : array [1..10] of Char
     password : array [1.. 10] of Char
 
-Boolean apakah_username_ada (struct User users[], num_user : integer, username[] : char) :
+Boolean apakah_username_ada (struct User users[], &num_user : integer, username[] : char) :
    for ( integer i = 0; i < num_users; i++ ) :
        if (strcmp (users[i].username, username == 0) then
           Return --> False
 
-Procedure registerpengguna 
+Procedure registerpengguna (struct user users [], &num_user : integer)
+    output (" Masukan nama pengguna ")    
+    Username : array [0..50] of Char
+    input (Username) <-- Char
+
+    if (apakah_username_ada (users, &num_users, username)) then 
+        output (" Nama pengguna sudah digunakan. Silakan pilih nama pengguna lain. ")
+
+output (" Masukan kata sandi : ")
+Password : array [0...50] of Char
+input (Password) <-- Char
+
+Procedure strcpy (users array [&num_users], Username) <-- username
+Procedure strcpy (users array [&num_users], Password) <-- Password
+( &num_users )++
+
+output ("Registrasi berhasil!") 
+
+Boolean login (struct User users [], num_users : integer, username [] : Char, Password [] : Char)
+    for (int i = 0; i < num_users; i++) :
+         if (strcmp(users[i].username, username) == 0 and strcmp(users[i].password, password) == 0) then 
+            Return --> True
+         else 
+            Return --> False
+
+Algoritma 
+---------
+
+
+
+
+
+
+
+
+
