@@ -17,8 +17,8 @@ Procedure displayCustomerTable (struct Customer customers [] : Char, Count : Int
     output (" ======================================= ")
     output (" No. Nama Pemilik ") 
 
-    for (integer i = 0 ; i < count ; i++ ) :
-        output (" %-3d %-19s ", i+1, customers[i].name) <-- Integer, Char
+    for integer i = 0 <-- i < count do
+        output (" %-3d %-19s ", i+1, customers[i].name)
 
     output (" ======================================= ")
 
@@ -33,38 +33,36 @@ Procedure printReceipt (struct Customer customer) :
     output (" %-25s: %s ", "Jenis Mobil", customer.model)
     output (" %-25s: %s ", "Tanggal Pendaftaran", customer.date)
 
-    output (" ") 
-
 
 Struct User : 
     username : array [1..10] of Char
     password : array [1.. 10] of Char
 
-Boolean apakah_username_ada (struct User users[], &num_user : integer, username[] : char) :
-   for ( integer i = 0; i < num_users; i++ ) :
+Procedure Boolean apakah_username_ada (struct User users[], &num_user : integer, username[] : char) :
+   for integer i = 0 <-- i < num_users do
        if (strcmp (users[i].username, username == 0) then
           Return --> False
 
-Procedure registerpengguna (struct user users [], &num_user : integer)
+Procedure registerpengguna (struct user users [], &num_user : integer) :
     output (" Masukan nama pengguna ")    
-    Username : array [0..50] of Char
-    input (Username) <-- Char
+    Username : array [0...50] of Char
+    input (Username)
 
     if (apakah_username_ada (users, &num_users, username)) then 
         output (" Nama pengguna sudah digunakan. Silakan pilih nama pengguna lain. ")
 
-output (" Masukan kata sandi : ")
-Password : array [0...50] of Char
-input (Password) <-- Char
+    output (" Masukan kata sandi : ")
+    Password : array [0...50] of Char
+    input (Password)
 
-Procedure strcpy (users array [&num_users], Username) <-- username
-Procedure strcpy (users array [&num_users], Password) <-- Password
-( &num_users )++
+    Procedure strcpy (users array [&num_users], Username) <-- username
+    Procedure strcpy (users array [&num_users], Password) <-- Password
+    ( &num_users )++
 
-output ("Registrasi berhasil!") 
+    output ("Registrasi berhasil!") 
 
-Boolean login (struct User users [], num_users : integer, username [] : Char, Password [] : Char)
-    for (int i = 0; i < num_users; i++) :
+Procedure Boolean login (struct User users [], num_users : integer, username [] : Char, Password [] : Char) :
+    for int i = 0 <-- i < num_users do
          if (strcmp(users[i].username, username) == 0 and strcmp(users[i].password, password) == 0) then 
             Return --> True
          else 
@@ -72,12 +70,228 @@ Boolean login (struct User users [], num_users : integer, username [] : Char, Pa
 
 Algoritma 
 ---------
+    users: Array [1..10] of User
+    num user <-- 0 : integer
 
+    while true do
+        output("Layanan Dealer dan Bengkel Wojak")
+        output("Menu:")
+        output("1. Registrasi")
+        output("2. Login")
+        output("3. Keluar")
+        output("Pilihan: ")
+        
+        pilihan : integer
+        input (pilihan)
 
+        depend on (pilihan)
+            case 1
+               registerpengguna(users, &num_users)
+            case 2
+                username : array [1...50] of char
+                password : array [1...50] of char
+                output("Masukkan nama pengguna: ")
+                input(username)
+                output("Masukkan kata sandi: ")
+                input(password)
 
+                if (login(users, num_users, username, password)) do
+                    output("Login berhasil!")
 
+                    while (login) do
+                        pilihan : integer
+                        repeat
+                            output ("Menu Pelayanan")
+                            output ("1. Reservasi Pembelian Mobil")
+                            output ("2. Reservasi Service Mobil")
+                            output ("3. Akhiri sesi")
+                            output ("Pilihan : ")
+                            input (pilihan)
 
+                            depend on (pilihan)
+                                case 1
+                                    mobil : integer
+                                    ouput("Berikut Opsi Mobil")
+                                    repeat
+                                        Output ("1. BMW M4")
+                                        printf ("2. Audi RS6")
+                                        printf ("3. Mercedes AMG Gt")
+                                        printf ("4. atau kembali ke menu utama?")
+                                        printf ("masukan opsi : ")
+                                        scanf (mobil)
 
+                                        depend on (mobil)
+                                            case 1
+                                                bmw : integer
+                                                output ("Berikut Informasi mengenai BMW M4")
+                                                repeat
+                                                    output ("Jenis Transmisi : Bensin/Otomatis\n");
+                                                    output ("Tenaga          : 431 hp\n");
+                                                    output ("Kapasitas Kursi: 4 kursi\n");
+                                                    output ("Kapasitas mesin : 2979 cc\n\n");
+                                                    output ("Kecepatan Max   : 250 km/h");
+                                                    output ("Harga BMW M4 Yaitu Rp 1,999 Milyar\n");
+                                                    output ("Serta Dp yang dapat diajukan adalah Rp 652 Juta dan Angsuran : Rp 61,29 Juta x 36\n");
+                                                    output ("Apakah anda tertarik?\n");
+                                                    output ("1. Lanjutkan\n");
+                                                    output ("2. kembali\n");
+                                                    output ("Bagaimana? : ");
+                                                    output ("%d", &bmw);
+
+                                                    depend on (bmw)
+                                                        case 1:
+                                                            pembayaran : integer
+                                                            output ("Silahkan Pilih Opsi Pembayaran")
+                                                            repeat
+                                                                output ("1. Tunai")
+                                                                output ("2. Kredit")
+                                                                output ("3. Urungkan")
+                                                                output ("Pilihan anda? : ")
+                                                                input (pembayaran)
+
+                                                                depend on (pembayaran)
+                                                                    case 1
+                                                                        nama : array [1...50] of char
+                                                                        alamat : array [1...100] of char
+                                                                        umur : integer
+                                                                        ktp : integer
+                                                                        harga <-- 2000000000 : double
+                                                                        pembayaran,kembali : double
+                                                                        output ("Anda Memilih Pembayaran Tunai")
+                                                                        output ("Silahkan Masukan Data Diri Anda")
+
+                                                                        output ("Masukan Nama   :")
+                                                                        input (nama)
+
+                                                                        output ("Masukan No KTP :")
+                                                                        input (ktp)
+
+                                                                        printf ("Umur Anda      :");
+                                                                        scanf ("%d", &umur);
+
+                                                                        output ("Alamat Lengkap :")
+                                                                        input ("%s", &alamat)
+
+                                                                        output ("Masukan Nominal Pembayaran : Rp. ")
+                                                                        input (pembayaran)
+
+                                                                        if (pembayaran >= harga) then
+                                                                            kembali <-- pembayaran - harga
+                                                                            output ("Total Uang Kembali: Rp. ", kembali)
+
+                                                                            output ("Lakukan Konfirmasi?")
+                                                                            konfirmasi : char
+                                                                            ouput ("Konfirmasi (y/Y untuk ya): ")
+                                                                            input(+konfirmasi);
+
+                                                                            if (konfirmasi = 'y' OR konfirmasi = 'Y') then
+                                                                                output ("========================================================")
+                                                                                output ("       Terima kasih Pembayaran Anda Telah Sukses     ")
+                                                                                output ("========================================================")
+                                                                                output ("          Berikut Ini Bukti Pembelian Anda          ")
+                                                                                output ("========================================================")
+                                                                                output ("Hal                : Pembelian Unit Mobil")
+                                                                                output ("Merk               : BMW")
+                                                                                output ("Model              : M4")
+                                                                                output ("Metode Pembayaran  : Tunai")
+                                                                                output ("Atas Nama          : ", nama)
+                                                                                output ("No KTP             : ", ktp)
+                                                                                output ("Usia               : ", umur)
+                                                                                output ("Alamat             : ", alamat)
+                                                                                output ("Membayar           : Rp. ", pembayaran)
+                                                                                output ("Uang Kembali       : Rp. ", kembali)
+                                                                                return 0
+                                                                            }
+                                                                            else {
+                                                                                output("Konfirmasi tidak valid.")
+                                                                            }
+                                                                        }
+                                                                        else {
+                                                                            output ("Nominal yang anda bayarkan Kurang, Silahkan coba kembali!")
+                                                                        }
+                                                                        break
+                                                                    }
+                                                                    case 2: {
+                                                                        nama : array [1...50] of char
+                                                                        alamat : [1...100] of char
+                                                                        int umur;
+                                                                        int ktp;
+                                                                        int no_kartu;
+                                                                        int gaji_rata_rata;
+                                                                        double dp = 652000000;
+                                                                        double angsuran = 61290000;
+                                                                        double pembayaran_dp, kembali;
+                                                                        int tenor = 36;
+                                                                        printf ("\nAnda memilih Opsi Pembayaran Kredit\n");
+                                                                        printf ("Masukan Data diri Terlebih dahulu\n");
+
+                                                                        printf ("Masukan Nama :");
+                                                                        scanf ("%s", &nama);
+
+                                                                        printf ("Berapa Usia Anda :");
+                                                                        scanf ("%d", &umur);
+
+                                                                        printf ("Masukan No. KTP :");
+                                                                        scanf ("%d", &ktp);
+
+                                                                        printf ("Masukan No. Kartu :");
+                                                                        scanf ("%d", &no_kartu);
+
+                                                                        printf ("Berapakah Gaji Rata-Rata anda (Bulan) :");
+                                                                        scanf ("%d", &gaji_rata_rata);
+
+                                                                        printf ("Alamat Lengkap :");
+                                                                        scanf ("%s", &alamat);
+
+                                                                        double total_pembayaran = angsuran * tenor;
+
+                                                                        printf ("\nAnda Akan Melakukan Pembelian Mobil Dengan Metode Kredit Sesuai dengan syarat dan ketentuan\n");
+                                                                        char konfirmasi;
+                                                                        printf ("Konfirmasi? (y/Y untuk Melanjutkan) :");
+                                                                        scanf (" %c", &konfirmasi);
+                                                                        if (konfirmasi == 'y' || konfirmasi == 'Y'){
+                                                                            printf ("\nMasukan Nominal Pembayaran (DP) : Rp.");
+                                                                            scanf ("%lf", &pembayaran_dp);
+                                                                            if (pembayaran_dp>=dp){
+                                                                                kembali = pembayaran_dp - dp;
+                                                                                printf ("\nKembalian Anda adalah : Rp. %.2lf\n", kembali);
+                                                                                printf ("Lanjutkan Cetak Bukti?\n");
+                                                                                char bukti;
+                                                                                printf ("Lanjutkan (y/Y untuk melanjutkan):");
+                                                                                scanf (" %c", &bukti);
+
+                                                                                if ( bukti == 'y' || bukti =='Y' ){
+                                                                                    printf ("\n========================================================\n");
+                                                                                    printf ("       Terima kasih Pengajuan Anda Telah Sukses         \n");
+                                                                                    printf ("========================================================\n");
+                                                                                    printf ("          Berikut Ini Bukti Pembelian Anda          \n");
+                                                                                    printf ("========================================================\n");
+                                                                                    printf ("Hal                : Pembelian Unit Mobil\n");
+                                                                                    printf ("Merk               : BMW\n");
+                                                                                    printf ("Model              : M4\n");
+                                                                                    printf ("Metode Pembayaran  : Kredit\n");
+                                                                                    printf ("Atas Nama          : %s\n", nama);
+                                                                                    printf ("No KTP             : %d\n", ktp);
+                                                                                    printf ("Usia               : %d\n", umur);
+                                                                                    printf ("No Kartu           : %d\n", no_kartu);
+                                                                                    printf ("Gaji Rata-Rata     : %d\n", gaji_rata_rata);
+                                                                                    printf ("Alamat             : %s\n", alamat);
+                                                                                    printf ("Membayar dp        : Rp. %.2lf\n", pembayaran_dp);
+                                                                                    printf ("Uang Kembali       : Rp. %.2lf\n", kembali);
+                                                                                    printf ("Total Angsuran     : Rp. %.2lf\n", angsuran);
+                                                                                    printf ("Tenor              : %d bulan\n", tenor);
+                                                                                    printf ("Angsuran Total     : Rp. %.2lf\n", total_pembayaran);
+                                                                                    return 0;
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                    }
+                                                                }
+                                                            }while (pembayaran != 3);
+                                                    }
+                                                }while ( bmw != 2);
+                                                break;
 
 
 
