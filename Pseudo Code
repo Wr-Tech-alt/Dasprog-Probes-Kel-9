@@ -605,165 +605,166 @@ Algoritma
                                                 break
                                     untill (mobil != 5)
                                     break
-                    case 2
-                    struct Customer previousCustomers[MAX_CUSTOMERS]
-                        choice : integer
-                        previousCount <-- 0 : integer
-                        customerChanged <-- false : boolean
                     
-                        // Data pelanggan sebelumnya
-                        struct Customer customer1 :
-                            .name <-- "ayu lisa fadyla",
-                            .phone <-- "081399xxx",
-                            .address <-- "jl.belimbing 2 no 6",
-                            .model <-- "bmw plat B.6167 dyl",
-                            .date <-- "08-04-2024"
-                    
-                        struct Customer customer2 :
-                            .name <-- "winrat prastono",
-                            .phone <-- "083409xxx",
-                            .address <-- "jl.dirgahayu no18 RT5/RW8, Halim PK",
-                            .model <-- "Honda Civic plat B.4458 fkp",
-                            .date <-- "02-05-2024"
-                    
-                        struct Customer customer3 :
-                            .name <-- "Taqiyuddin Rois",
-                            .phone <-- "086578xx",
-                            .address <-- "jl.surga no23 RT3/RW7, Depok ",
-                            .model <-- "tesla plat F.2375 dbd",
-                            .date <-- "03-06-2024"
-                    
-                        struct Customer customer4 :
-                            .name <-- "Azizah nur aini",
-                            .phone <-- "086734xxx",
-                            .address <-- "jl.,mawar no32 RT4/RW3, Buaran",
-                            .model <-- "Toyota alphard plat B.2341 yup",
-                            .date <-- "04-06-2023"
-                    
-                        // MENYIMPAN DATA YANG SEBELUMNYA KE DALAM ARRAY
-                        previousCustomers[previousCount++] <-- customer1
-                        previousCustomers[previousCount++] <-- customer2
-                        previousCustomers[previousCount++] <-- customer3
-                        previousCustomers[previousCount++] <-- customer4
-                    
-                        output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                        output("|  * * * BENGKEL WOJAK  * * *  |")
-                        output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                    
-                        while (1)
-                        {
-                            output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-                            output("|  *  *  * Reservasi Servis Mobil *  *  *  |")
-                            output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-                    
-                            output("Menu:\n");
-                            output("1. Servis Mobil Secara Langsung")
-                            output("2. Booking Layanan Servis Mobil")
-                            output("3. Lihat Daftar Customer")
-                            output("4. Cetak Struk")
-                            output("5. Kembali ke Menu Utama")
-                            output("Pilih Layanan (1/2/3/4/5): ")
-                            input(choice);
-                    
-                            output(" ");
-                    
-                            depend on (choice)
-                                case 1
-                                    output("Servis Mobil Secara Langsung")
-                                    output("Silahkan mengisi kertas formulir dari meja administrasi dan mengisi keluhan ")
-                                    output("lalu berikan kertas anda kembali untuk diproses menjadi nomor antrian.")
-                                    break
-                    
-                                case 2
-                                    output("Booking Layanan Servis Mobil")
-                    
-                                    if (previousCount >= MAX_CUSTOMERS) then
-                                        printf("Maaf, kapasitas pendaftaran sudah penuh.")
-                                        break
-                    
-                                    output("Masukkan Nama Pemilik        : ")
-                                    getchar()
-                                    fgets(previousCustomers[previousCount].name, sizeof(previousCustomers[previousCount].name), stdin)
-                    
-                                    output("Masukkan Nomor Telepon       : ")
-                                    fgets(previousCustomers[previousCount].phone, sizeof(previousCustomers[previousCount].phone), stdin)
-                    
-                                    output("Masukkan Alamat              : ")
-                                    fgets(previousCustomers[previousCount].address, sizeof(previousCustomers[previousCount].address), stdin)
-                    
-                                    output("Masukkan Model Kendaraan     : ")
-                                    fgets(previousCustomers[previousCount].model, sizeof(previousCustomers[previousCount].model), stdin)
-                    
-                                    output("Masukkan Tanggal Pendaftaran : ")
-                                    fgets(previousCustomers[previousCount].date, sizeof(previousCustomers[previousCount].date), stdin)
-                                    customerChanged <-- true
-                                    previousCount++
-                    
-                                    printf("Reservasi berhasil dilakukan.")
-                                    break
-                    
-                                case 3
-                                    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                                    printf("|  * * * SERVICE BENGKEL WOJAK * * *  |")
-                                    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                                    printf("|      Daftar Customer yang Terdaftar      |")
-                                    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-                    
-                                    if (customerChanged) then
-                                        // Mengurutkan customer berdasarkan nomor Antrian
-                                        for int i = 0 to i < previousCount - 1 do
-                                            for int j = 0 to j < previousCount - i - 1 do
-                                                if (strcmp(previousCustomers[j].date, previousCustomers[j + 1].date) > 0)
-                                                then
-                                                    struct Customer temp <-- previousCustomers[j]
-                                                    previousCustomers[j] <-- previousCustomers[j + 1]
-                                                    previousCustomers[j + 1] <-- temp
-                    
-                                    displayCustomerTable(previousCustomers, previousCount)
-                                    break
-                    
-                                case 4
-                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                                    output("|  * * * SERVICE BENGKEL WOJAK * * *  |")
-                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                                    output("|           Cetak Struk Reservasi          |")
-                                    output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-                    
-                                    customerNumber : integer
-                                    output("Masukkan nomor antrian customer: ")
-                                    input(customerNumber)
-                                    output(" ")
-                                    if (customerNumber >= 1 && customerNumber <= previousCount)
-                                    then
-                                        printReceipt(previousCustomers[customerNumber - 1])
-                                    else
-                                        printf("Nomor customer tidak valid.\n");
-                                    break
-                    
-                                case 5
-                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                                    output("|  * * * SERVICE BENGKEL WOJAK * * *  |")
-                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-                                    output("|          Kembali ke Menu Utama           |")
-                                    output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-                                    continue
-                    
-                                default
-                                    printf("Pilihan tidak valid. Silakan pilih layanan yang tersedia."
-                            
-                    
-                            output("")
-                        untill (pilihan != 3)
-                        break
-                else 
-                    output("Nama pengguna atau kata sandi salah. Silakan coba lagi.")
-                break
-
-            case 3
-                output("Terima kasih. Sampai jumpa lagi!"
-                return
-            default
-                printf("Pilihan tidak valid. Silakan pilih kembali.")
-    return 
+				case 2
+		                    struct Customer previousCustomers[MAX_CUSTOMERS]
+		                        choice : integer
+		                        previousCount <-- 0 : integer
+		                        customerChanged <-- false : boolean
+		                    
+		                        // Data pelanggan sebelumnya
+		                        struct Customer customer1 :
+		                            .name <-- "ayu lisa fadyla",
+		                            .phone <-- "081399xxx",
+		                            .address <-- "jl.belimbing 2 no 6",
+		                            .model <-- "bmw plat B.6167 dyl",
+		                            .date <-- "08-04-2024"
+		                    
+		                        struct Customer customer2 :
+		                            .name <-- "winrat prastono",
+		                            .phone <-- "083409xxx",
+		                            .address <-- "jl.dirgahayu no18 RT5/RW8, Halim PK",
+		                            .model <-- "Honda Civic plat B.4458 fkp",
+		                            .date <-- "02-05-2024"
+		                    
+		                        struct Customer customer3 :
+		                            .name <-- "Taqiyuddin Rois",
+		                            .phone <-- "086578xx",
+		                            .address <-- "jl.surga no23 RT3/RW7, Depok ",
+		                            .model <-- "tesla plat F.2375 dbd",
+		                            .date <-- "03-06-2024"
+		                    
+		                        struct Customer customer4 :
+		                            .name <-- "Azizah nur aini",
+		                            .phone <-- "086734xxx",
+		                            .address <-- "jl.,mawar no32 RT4/RW3, Buaran",
+		                            .model <-- "Toyota alphard plat B.2341 yup",
+		                            .date <-- "04-06-2023"
+		                    
+		                        // MENYIMPAN DATA YANG SEBELUMNYA KE DALAM ARRAY
+		                        previousCustomers[previousCount++] <-- customer1
+		                        previousCustomers[previousCount++] <-- customer2
+		                        previousCustomers[previousCount++] <-- customer3
+		                        previousCustomers[previousCount++] <-- customer4
+		                    
+		                        output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                        output("|  * * * BENGKEL WOJAK  * * *  |")
+		                        output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                    
+		                        while (1)
+		                        {
+		                            output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+		                            output("|  *  *  * Reservasi Servis Mobil *  *  *  |")
+		                            output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+		                    
+		                            output("Menu:\n");
+		                            output("1. Servis Mobil Secara Langsung")
+		                            output("2. Booking Layanan Servis Mobil")
+		                            output("3. Lihat Daftar Customer")
+		                            output("4. Cetak Struk")
+		                            output("5. Kembali ke Menu Utama")
+		                            output("Pilih Layanan (1/2/3/4/5): ")
+		                            input(choice);
+		                    
+		                            output(" ");
+		                    
+		                            depend on (choice)
+		                                case 1
+		                                    output("Servis Mobil Secara Langsung")
+		                                    output("Silahkan mengisi kertas formulir dari meja administrasi dan mengisi keluhan ")
+		                                    output("lalu berikan kertas anda kembali untuk diproses menjadi nomor antrian.")
+		                                    break
+		                    
+		                                case 2
+		                                    output("Booking Layanan Servis Mobil")
+		                    
+		                                    if (previousCount >= MAX_CUSTOMERS) then
+		                                        printf("Maaf, kapasitas pendaftaran sudah penuh.")
+		                                        break
+		                    
+		                                    output("Masukkan Nama Pemilik        : ")
+		                                    getchar()
+		                                    fgets(previousCustomers[previousCount].name, sizeof(previousCustomers[previousCount].name), stdin)
+		                    
+		                                    output("Masukkan Nomor Telepon       : ")
+		                                    fgets(previousCustomers[previousCount].phone, sizeof(previousCustomers[previousCount].phone), stdin)
+		                    
+		                                    output("Masukkan Alamat              : ")
+		                                    fgets(previousCustomers[previousCount].address, sizeof(previousCustomers[previousCount].address), stdin)
+		                    
+		                                    output("Masukkan Model Kendaraan     : ")
+		                                    fgets(previousCustomers[previousCount].model, sizeof(previousCustomers[previousCount].model), stdin)
+		                    
+		                                    output("Masukkan Tanggal Pendaftaran : ")
+		                                    fgets(previousCustomers[previousCount].date, sizeof(previousCustomers[previousCount].date), stdin)
+		                                    customerChanged <-- true
+		                                    previousCount++
+		                    
+		                                    printf("Reservasi berhasil dilakukan.")
+		                                    break
+		                    
+		                                case 3
+		                                    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                                    printf("|  * * * SERVICE BENGKEL WOJAK * * *  |")
+		                                    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                                    printf("|      Daftar Customer yang Terdaftar      |")
+		                                    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+		                    
+		                                    if (customerChanged) then
+		                                        // Mengurutkan customer berdasarkan nomor Antrian
+		                                        for int i = 0 to i < previousCount - 1 do
+		                                            for int j = 0 to j < previousCount - i - 1 do
+		                                                if (strcmp(previousCustomers[j].date, previousCustomers[j + 1].date) > 0)
+		                                                then
+		                                                    struct Customer temp <-- previousCustomers[j]
+		                                                    previousCustomers[j] <-- previousCustomers[j + 1]
+		                                                    previousCustomers[j + 1] <-- temp
+		                    
+		                                    displayCustomerTable(previousCustomers, previousCount)
+		                                    break
+		                    
+		                                case 4
+		                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                                    output("|  * * * SERVICE BENGKEL WOJAK * * *  |")
+		                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                                    output("|           Cetak Struk Reservasi          |")
+		                                    output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+		                    
+		                                    customerNumber : integer
+		                                    output("Masukkan nomor antrian customer: ")
+		                                    input(customerNumber)
+		                                    output(" ")
+		                                    if (customerNumber >= 1 && customerNumber <= previousCount)
+		                                    then
+		                                        printReceipt(previousCustomers[customerNumber - 1])
+		                                    else
+		                                        printf("Nomor customer tidak valid.\n");
+		                                    break
+		                    
+		                                case 5
+		                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                                    output("|  * * * SERVICE BENGKEL WOJAK * * *  |")
+		                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                                    output("|          Kembali ke Menu Utama           |")
+		                                    output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+		                                    continue
+		                    
+		                                default
+		                                    printf("Pilihan tidak valid. Silakan pilih layanan yang tersedia."
+		                            
+		                    
+		                            output("")
+		                        untill (pilihan != 3)
+		                        break
+		                else 
+		                    output("Nama pengguna atau kata sandi salah. Silakan coba lagi.")
+		                break
+		
+		            case 3
+		                output("Terima kasih. Sampai jumpa lagi!"
+		                return
+		            default
+		                printf("Pilihan tidak valid. Silakan pilih kembali.")
+	return 
 
 
