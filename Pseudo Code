@@ -652,12 +652,12 @@ Algoritma
 		                        output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
 		                    
 		                        while (1)
-		                        {
+		                        do
 		                            output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 		                            output("|  *  *  * Reservasi Servis Mobil *  *  *  |")
 		                            output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 		                    
-		                            output("Menu:\n");
+		                            output("Menu:")
 		                            output("1. Servis Mobil Secara Langsung")
 		                            output("2. Booking Layanan Servis Mobil")
 		                            output("3. Lihat Daftar Customer")
@@ -679,7 +679,7 @@ Algoritma
 		                                    output("Booking Layanan Servis Mobil")
 		                    
 		                                    if (previousCount >= MAX_CUSTOMERS) then
-		                                        printf("Maaf, kapasitas pendaftaran sudah penuh.")
+		                                        output("Maaf, kapasitas pendaftaran sudah penuh.")
 		                                        break
 		                    
 		                                    output("Masukkan Nama Pemilik        : ")
@@ -700,15 +700,15 @@ Algoritma
 		                                    customerChanged <-- true
 		                                    previousCount++
 		                    
-		                                    printf("Reservasi berhasil dilakukan.")
+		                                    output("Reservasi berhasil dilakukan.")
 		                                    break
 		                    
 		                                case 3
-		                                    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-		                                    printf("|  * * * SERVICE BENGKEL WOJAK * * *  |")
-		                                    printf("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-		                                    printf("|      Daftar Customer yang Terdaftar      |")
-		                                    printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+		                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                                    output("|  * * * SERVICE BENGKEL WOJAK * * *  |")
+		                                    output("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+		                                    output("|      Daftar Customer yang Terdaftar      |")
+		                                    output("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 		                    
 		                                    if (customerChanged) then
 		                                        // Mengurutkan customer berdasarkan nomor Antrian
@@ -738,7 +738,7 @@ Algoritma
 		                                    then
 		                                        printReceipt(previousCustomers[customerNumber - 1])
 		                                    else
-		                                        printf("Nomor customer tidak valid.\n");
+		                                        output("Nomor customer tidak valid.\n")
 		                                    break
 		                    
 		                                case 5
@@ -754,7 +754,7 @@ Algoritma
 		                            
 		                    
 		                            output("")
-		                        untill (pilihan != 3)
+		                	untill (pilihan != 3)
 		                        break
 		                else 
 		                    output("Nama pengguna atau kata sandi salah. Silakan coba lagi.")
@@ -764,7 +764,7 @@ Algoritma
 		                output("Terima kasih. Sampai jumpa lagi!"
 		                return
 		            default
-		                printf("Pilihan tidak valid. Silakan pilih kembali.")
+		                output("Pilihan tidak valid. Silakan pilih kembali.")
 	return 
 
 
